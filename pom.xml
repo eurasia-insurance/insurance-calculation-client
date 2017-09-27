@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.lapsa.maven.pom</groupId>
+		<artifactId>javaee7-eeapp-parent</artifactId>
+		<version>2.0</version>
+	</parent>
+
+	<groupId>com.lapsa.insurance-lib</groupId>
+	<artifactId>insurance-calculation</artifactId>
+	<version>3.0-SNAPSHOT</version>
+	<packaging>ejb</packaging>
+
+	<name>Insurance Lib : Calculation utility</name>
+
+	<properties>
+		<!-- APIs -->
+		<insurance-lib.version>2.3-SNAPSHOT</insurance-lib.version>
+		<lapsa-commons-lib.version>2.2-SNAPSHOT</lapsa-commons-lib.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- internal -->
+			<dependency>
+				<groupId>com.lapsa.insurance-lib</groupId>
+				<artifactId>insurance-domain</artifactId>
+				<version>${insurance-lib.version}</version>
+			</dependency>
+			<!-- internal lapsa-commons -->
+			<dependency>
+				<groupId>com.lapsa.lapsa-commons-lib</groupId>
+				<artifactId>lapsa-commons</artifactId>
+				<version>${lapsa-commons-lib.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<!-- internal -->
+		<dependency>
+			<groupId>com.lapsa.insurance-lib</groupId>
+			<artifactId>insurance-domain</artifactId>
+			<scope>compile</scope>
+			<optional>false</optional>
+		</dependency>
+		<!-- internal lapsa-commons -->
+		<dependency>
+			<groupId>com.lapsa.lapsa-commons-lib</groupId>
+			<artifactId>lapsa-commons</artifactId>
+			<scope>compile</scope>
+			<optional>false</optional>
+		</dependency>
+		<!-- test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<scm>
+		<connection>scm:git:https://gitlab.lapsa.tech/lapsa/insurance/calculation.git</connection>
+		<developerConnection>scm:git:https://gitlab.lapsa.tech/lapsa/insurance/calculation.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
+	<issueManagement>
+		<system>gitlab</system>
+		<url>https://gitlab.lapsa.tech/lapsa/insurance/calculation/issues</url>
+	</issueManagement>
+
+</project>
