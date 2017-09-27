@@ -7,7 +7,7 @@ import java.util.Map;
 
 import com.lapsa.insurance.elements.CascoDeductiblePartialRate;
 
-public final class CascoRates {
+final class CascoRates {
 
     private CascoRates() {
     }
