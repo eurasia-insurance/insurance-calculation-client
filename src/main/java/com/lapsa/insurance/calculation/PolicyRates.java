@@ -12,7 +12,7 @@ import com.lapsa.insurance.elements.VehicleAgeClass;
 import com.lapsa.insurance.elements.VehicleClass;
 import com.lapsa.kz.country.KZArea;
 
-final class PolicyRates {
+public final class PolicyRates {
 
     public static final double MRP = 2269d;
     public static final double BASE_RATE = 1.9;
