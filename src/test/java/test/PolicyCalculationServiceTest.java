@@ -1,8 +1,8 @@
-package test.calculation;
+package test;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
-import static test.calculation.TestObjectsCreatorHelper.*;
+import static test.TestObjectsCreatorHelper.*;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

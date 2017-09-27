@@ -1,4 +1,4 @@
-package test.calculation;
+package test;
 
 import com.lapsa.insurance.domain.CalculationData;
 import com.lapsa.insurance.domain.casco.Casco;
