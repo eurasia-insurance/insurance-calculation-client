@@ -16,7 +16,7 @@ import com.lapsa.insurance.elements.VehicleClass;
 import com.lapsa.kz.country.KZArea;
 import com.lapsa.kz.country.KZCity;
 
-public class TestObjectsCreatorHelper {
+public final class TestObjectsCreatorHelper {
 
     public static Policy generatePolicy() {
 	Policy policy = new Policy();
