@@ -11,7 +11,7 @@
 	<groupId>com.lapsa.insurance-lib</groupId>
 	<artifactId>insurance-calculation</artifactId>
 	<version>3.0-SNAPSHOT</version>
-	<packaging>ejb</packaging>
+	<packaging>jar</packaging>
 
 	<name>Insurance Lib : Calculation utility</name>
 
