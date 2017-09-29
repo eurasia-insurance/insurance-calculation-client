@@ -18,7 +18,7 @@
 	<properties>
 		<!-- APIs -->
 		<insurance-lib.version>2.3-SNAPSHOT</insurance-lib.version>
-		<lapsa-commons-lib.version>2.2-SNAPSHOT</lapsa-commons-lib.version>
+		<lapsa-commons.version>2.2-SNAPSHOT</lapsa-commons.version>
 	</properties>
 
 	<dependencyManagement>
@@ -31,9 +31,9 @@
 			</dependency>
 			<!-- internal lapsa-commons -->
 			<dependency>
-				<groupId>com.lapsa.lapsa-commons-lib</groupId>
+				<groupId>com.lapsa.lapsa.commons</groupId>
 				<artifactId>lapsa-commons</artifactId>
-				<version>${lapsa-commons-lib.version}</version>
+				<version>${lapsa-commons.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -45,10 +45,40 @@
 			<artifactId>insurance-domain</artifactId>
 			<scope>compile</scope>
 			<optional>false</optional>
+			<exclusions>
+				<exclusion>
+					<groupId>com.lapsa.international-lib</groupId>
+					<artifactId>international-eelib</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.lapsa.kz-lib</groupId>
+					<artifactId>kz-eelib</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.lapsa.insurance-lib</groupId>
+					<artifactId>insurance-validation</artifactId>
+				</exclusion>
+				<exclusion>
+					<artifactId>lapsa-validation</artifactId>
+					<groupId>com.lapsa.lapsa-lib</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>donkeyfaces-model</artifactId>
+					<groupId>com.lapsa.donkeyfaces-lib</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>donkeyfaces-validation</artifactId>
+					<groupId>com.lapsa.donkeyfaces-lib</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-lang3</artifactId>
+					<groupId>org.apache.commons</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<!-- internal lapsa-commons -->
 		<dependency>
-			<groupId>com.lapsa.lapsa-commons-lib</groupId>
+			<groupId>com.lapsa.lapsa.commons</groupId>
 			<artifactId>lapsa-commons</artifactId>
 			<scope>compile</scope>
 			<optional>false</optional>
