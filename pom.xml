@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.lapsa.maven.pom</groupId>
 		<artifactId>javaee7-app-parent</artifactId>
-		<version>2.0</version>
+		<version>3.0-SNAPSHOT</version>
 	</parent>
 
 	<groupId>com.lapsa.insurance-lib</groupId>
@@ -45,36 +45,6 @@
 			<artifactId>insurance-domain</artifactId>
 			<scope>compile</scope>
 			<optional>false</optional>
-			<exclusions>
-				<exclusion>
-					<groupId>com.lapsa.international-lib</groupId>
-					<artifactId>international-eelib</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.lapsa.kz-lib</groupId>
-					<artifactId>kz-eelib</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.lapsa.insurance-lib</groupId>
-					<artifactId>insurance-validation</artifactId>
-				</exclusion>
-				<exclusion>
-					<artifactId>lapsa-validation</artifactId>
-					<groupId>com.lapsa.lapsa-lib</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>donkeyfaces-model</artifactId>
-					<groupId>com.lapsa.donkeyfaces-lib</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>donkeyfaces-validation</artifactId>
-					<groupId>com.lapsa.donkeyfaces-lib</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>commons-lang3</artifactId>
-					<groupId>org.apache.commons</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<!-- internal lapsa-commons -->
 		<dependency>
