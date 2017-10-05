@@ -8,7 +8,7 @@
 		<version>3.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>com.lapsa.insurance-lib</groupId>
+	<groupId>com.lapsa.insurance</groupId>
 	<artifactId>insurance-calculation</artifactId>
 	<version>3.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
