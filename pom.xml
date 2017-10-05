@@ -10,7 +10,7 @@
 
 	<groupId>com.lapsa.insurance</groupId>
 	<artifactId>insurance-calculation</artifactId>
-	<version>3.0-SNAPSHOT</version>
+	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Insurance Lib : Calculation utility</name>
