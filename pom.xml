@@ -16,24 +16,27 @@
 	<name>Insurance Lib : Calculation utility</name>
 
 	<properties>
+		<!-- BOMS -->
+		<lapsa-bom.version>1.0-SNAPSHOT</lapsa-bom.version>
 		<!-- APIs -->
 		<insurance-lib.version>2.3-SNAPSHOT</insurance-lib.version>
-		<lapsa-commons.version>2.2-SNAPSHOT</lapsa-commons.version>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
+			<!-- BOMS -->
+			<dependency>
+				<groupId>tech.lapsa.lapsa</groupId>
+				<artifactId>lapsa-bom</artifactId>
+				<version>${lapsa-bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 			<!-- internal -->
 			<dependency>
 				<groupId>com.lapsa.insurance-lib</groupId>
 				<artifactId>insurance-domain</artifactId>
 				<version>${insurance-lib.version}</version>
-			</dependency>
-			<!-- internal lapsa-commons -->
-			<dependency>
-				<groupId>tech.lapsa.lapsa</groupId>
-				<artifactId>lapsa-commons</artifactId>
-				<version>${lapsa-commons.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
