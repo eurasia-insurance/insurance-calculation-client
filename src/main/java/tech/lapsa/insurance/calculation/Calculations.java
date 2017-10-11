@@ -1,4 +1,4 @@
-package com.lapsa.insurance.calculation;
+package tech.lapsa.insurance.calculation;
 
 import java.time.LocalDate;
 import java.time.Period;

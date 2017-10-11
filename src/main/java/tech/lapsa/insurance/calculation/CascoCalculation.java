@@ -1,6 +1,6 @@
-package com.lapsa.insurance.calculation;
+package tech.lapsa.insurance.calculation;
 
-import static com.lapsa.insurance.calculation.CascoRates.*;
+import static tech.lapsa.insurance.calculation.CascoRates.*;
 
 import com.lapsa.fin.FinCurrency;
 import com.lapsa.insurance.domain.casco.Casco;

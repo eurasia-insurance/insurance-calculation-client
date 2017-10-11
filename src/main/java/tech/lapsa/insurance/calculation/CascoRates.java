@@ -1,4 +1,4 @@
-package com.lapsa.insurance.calculation;
+package tech.lapsa.insurance.calculation;
 
 import static com.lapsa.insurance.elements.CascoDeductiblePartialRate.*;
 import static tech.lapsa.java.commons.function.MyMaps.*;

@@ -6,12 +6,13 @@ import static test.TestObjectsCreatorHelper.*;
 
 import org.junit.Test;
 
-import com.lapsa.insurance.calculation.CalculationFailed;
-import com.lapsa.insurance.calculation.CascoCalculation;
 import com.lapsa.insurance.domain.casco.Casco;
 import com.lapsa.insurance.elements.CascoCarAgeClass;
 import com.lapsa.insurance.elements.CascoDeductibleFullRate;
 import com.lapsa.insurance.elements.CascoDeductiblePartialRate;
+
+import tech.lapsa.insurance.calculation.CalculationFailed;
+import tech.lapsa.insurance.calculation.CascoCalculation;
 
 public class CascoCalculationServiceTest {
 
