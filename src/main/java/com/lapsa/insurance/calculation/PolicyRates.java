@@ -1,6 +1,6 @@
 package com.lapsa.insurance.calculation;
 
-import static com.lapsa.commons.function.MyMaps.*;
+import static tech.lapsa.java.commons.function.MyMaps.*;
 
 import java.util.Map;
 
