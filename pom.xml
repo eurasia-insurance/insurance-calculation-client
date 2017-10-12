@@ -32,11 +32,13 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			<!-- internal -->
+			<!-- oldies -->
 			<dependency>
 				<groupId>com.lapsa.insurance-lib</groupId>
-				<artifactId>insurance-domain</artifactId>
+				<artifactId>insurance-root</artifactId>
 				<version>${insurance-lib.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
