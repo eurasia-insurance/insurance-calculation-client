@@ -22,7 +22,7 @@ final class Calculations {
     }
 
     static double roundMoney(final double input) {
-	return roundMoney(input, 2);
+	return roundMoney(input, 0);
     }
 
     static double costAnnualToPeriod(final double annual, InsurancePeriodData period) throws CalculationFailed {
