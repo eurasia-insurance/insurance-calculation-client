@@ -20,7 +20,7 @@ public class CascoCalculationServiceTest {
     public void testCascoCalculationVariant1() throws CalculationFailed {
 	Casco casco = generateCasco();
 	CascoCalculation.calculateCascoCost(casco);
-	assertThat(casco.getCalculation().getPremiumCost(), equalTo(282993.75d));
+	assertThat(casco.getCalculation().getPremiumCost(), equalTo(282994d));
     }
 
     @Test
@@ -29,7 +29,7 @@ public class CascoCalculationServiceTest {
 	casco.setDeductiblePartialRequired(true);
 	casco.setDeductiblePartialRate(CascoDeductiblePartialRate.PERCENT2);
 	CascoCalculation.calculateCascoCost(casco);
-	assertThat(casco.getCalculation().getPremiumCost(), equalTo(177375.00d));
+	assertThat(casco.getCalculation().getPremiumCost(), equalTo(177375d));
     }
 
     @Test

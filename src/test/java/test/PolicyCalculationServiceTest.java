@@ -28,7 +28,7 @@ public class PolicyCalculationServiceTest {
     public void testPolicyCalculationVariant1() throws CalculationFailed {
 	Policy policy = generatePolicy();
 	PolicyCalculation.calculatePolicyCost(policy);
-	assertThat(policy.getCalculation().getPremiumCost(), equalTo(30804.07d));
+	assertThat(policy.getCalculation().getPremiumCost(), equalTo(30804d));
     }
 
     @Test
@@ -39,7 +39,7 @@ public class PolicyCalculationServiceTest {
 	period.setTo(period.getFrom().plusDays(365));
 	policy.setPeriod(period);
 	PolicyCalculation.calculatePolicyCost(policy);
-	assertThat(policy.getCalculation().getPremiumCost(), equalTo(30804.07d));
+	assertThat(policy.getCalculation().getPremiumCost(), equalTo(30804d));
     }
 
     @Test
@@ -50,7 +50,7 @@ public class PolicyCalculationServiceTest {
 	period.setTo(period.getFrom().plusMonths(1));
 	policy.setPeriod(period);
 	PolicyCalculation.calculatePolicyCost(policy);
-	assertThat(policy.getCalculation().getPremiumCost(), equalTo(2693.25d));
+	assertThat(policy.getCalculation().getPremiumCost(), equalTo(2693d));
     }
 
     @Test
@@ -61,7 +61,7 @@ public class PolicyCalculationServiceTest {
 	period.setTo(period.getFrom().plus(1, ChronoUnit.YEARS));
 	policy.setPeriod(period);
 	PolicyCalculation.calculatePolicyCost(policy);
-	assertThat(policy.getCalculation().getPremiumCost(), equalTo(30804.07d));
+	assertThat(policy.getCalculation().getPremiumCost(), equalTo(30804d));
     }
 
     @Test
@@ -81,7 +81,7 @@ public class PolicyCalculationServiceTest {
 	veh.setVehicleClass(VehicleClass.CAR);
 
 	PolicyCalculation.calculatePolicyCost(policy);
-	assertThat(policy.getCalculation().getPremiumCost(), equalTo(43609.36d));
+	assertThat(policy.getCalculation().getPremiumCost(), equalTo(43609d));
     }
 
 }
