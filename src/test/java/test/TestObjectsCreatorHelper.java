@@ -16,13 +16,15 @@ import com.lapsa.insurance.elements.VehicleClass;
 import com.lapsa.kz.country.KZArea;
 import com.lapsa.kz.country.KZCity;
 
+import tech.lapsa.kz.taxpayer.TaxpayerNumber;
+
 public final class TestObjectsCreatorHelper {
 
     public static Policy generatePolicy() {
 	Policy policy = new Policy();
 
 	PolicyDriver d = new PolicyDriver();
-	d.setIdNumber("123123123127");
+	d.setIdNumber(TaxpayerNumber.of("123123123127"));
 	d.setInsuranceClassType(InsuranceClassType.CLASS_3);
 	d.setAgeClass(InsuredAgeClass.OVER25);
 	d.setExpirienceClass(InsuredExpirienceClass.LESS2);
