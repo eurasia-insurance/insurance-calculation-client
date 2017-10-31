@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>tech.lapsa.maven</groupId>
 		<artifactId>maven-general</artifactId>
-		<version>3.0-SNAPSHOT</version>
+		<version>3.0</version>
 	</parent>
 
 	<groupId>tech.lapsa.insurance</groupId>
@@ -17,9 +17,9 @@
 
 	<properties>
 		<!-- BOMS -->
-		<lapsa-commons-root.version>1.0-SNAPSHOT</lapsa-commons-root.version>
+		<lapsa-commons.version>1.0</lapsa-commons.version>
 		<!-- APIs -->
-		<insurance-lib.version>2.3-SNAPSHOT</insurance-lib.version>
+		<insurance-lib.version>2.3</insurance-lib.version>
 	</properties>
 
 	<dependencyManagement>
@@ -27,8 +27,8 @@
 			<!-- BOMS -->
 			<dependency>
 				<groupId>tech.lapsa.java</groupId>
-				<artifactId>java-commons-root</artifactId>
-				<version>${lapsa-commons-root.version}</version>
+				<artifactId>java-commons</artifactId>
+				<version>${lapsa-commons.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
