@@ -18,7 +18,7 @@
 		<!-- BOMS -->
 		<lapsa-commons.version>1.0</lapsa-commons.version>
 		<!-- APIs -->
-		<insurance-lib.version>2.3</insurance-lib.version>
+		<insurance-lib.version>2.4-SNAPSHOT</insurance-lib.version>
 	</properties>
 
 	<dependencyManagement>
