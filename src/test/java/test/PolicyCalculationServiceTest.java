@@ -9,6 +9,7 @@ import java.time.temporal.ChronoUnit;
 
 import org.junit.Test;
 
+import com.lapsa.fin.FinCurrency;
 import com.lapsa.insurance.domain.InsurancePeriodData;
 import com.lapsa.insurance.domain.policy.Policy;
 import com.lapsa.insurance.domain.policy.PolicyDriver;
@@ -40,6 +41,7 @@ public class PolicyCalculationServiceTest {
 	policy.setPeriod(period);
 	PolicyCalculation.calculatePolicyCost(policy);
 	assertThat(policy.getCalculation().getPremiumCost(), equalTo(30804d));
+	assertThat(policy.getCalculation().getPremiumCurrency(), allOf(not(nullValue()), equalTo(FinCurrency.KZT)));
     }
 
     @Test
@@ -51,6 +53,7 @@ public class PolicyCalculationServiceTest {
 	policy.setPeriod(period);
 	PolicyCalculation.calculatePolicyCost(policy);
 	assertThat(policy.getCalculation().getPremiumCost(), equalTo(2693d));
+	assertThat(policy.getCalculation().getPremiumCurrency(), allOf(not(nullValue()), equalTo(FinCurrency.KZT)));
     }
 
     @Test
@@ -62,6 +65,7 @@ public class PolicyCalculationServiceTest {
 	policy.setPeriod(period);
 	PolicyCalculation.calculatePolicyCost(policy);
 	assertThat(policy.getCalculation().getPremiumCost(), equalTo(30804d));
+	assertThat(policy.getCalculation().getPremiumCurrency(), allOf(not(nullValue()), equalTo(FinCurrency.KZT)));
     }
 
     @Test
@@ -82,6 +86,7 @@ public class PolicyCalculationServiceTest {
 
 	PolicyCalculation.calculatePolicyCost(policy);
 	assertThat(policy.getCalculation().getPremiumCost(), equalTo(43609d));
+	assertThat(policy.getCalculation().getPremiumCurrency(), allOf(not(nullValue()), equalTo(FinCurrency.KZT)));
     }
 
 }
