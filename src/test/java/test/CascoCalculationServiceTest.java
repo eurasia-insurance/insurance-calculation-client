@@ -6,6 +6,7 @@ import static test.TestObjectsCreatorHelper.*;
 
 import org.junit.Test;
 
+import com.lapsa.fin.FinCurrency;
 import com.lapsa.insurance.domain.casco.Casco;
 import com.lapsa.insurance.elements.CascoCarAgeClass;
 import com.lapsa.insurance.elements.CascoDeductibleFullRate;
@@ -21,6 +22,7 @@ public class CascoCalculationServiceTest {
 	Casco casco = generateCasco();
 	CascoCalculation.calculateCascoCost(casco);
 	assertThat(casco.getCalculation().getPremiumCost(), equalTo(282994d));
+	assertThat(casco.getCalculation().getPremiumCurrency(), allOf(not(nullValue()), equalTo(FinCurrency.KZT)));
     }
 
     @Test
@@ -30,6 +32,7 @@ public class CascoCalculationServiceTest {
 	casco.setDeductiblePartialRate(CascoDeductiblePartialRate.PERCENT2);
 	CascoCalculation.calculateCascoCost(casco);
 	assertThat(casco.getCalculation().getPremiumCost(), equalTo(177375d));
+	assertThat(casco.getCalculation().getPremiumCurrency(), allOf(not(nullValue()), equalTo(FinCurrency.KZT)));
     }
 
     @Test
@@ -48,6 +51,7 @@ public class CascoCalculationServiceTest {
 
 	CascoCalculation.calculateCascoCost(casco);
 	assertThat(casco.getCalculation().getPremiumCost(), equalTo(50000.00d));
+	assertThat(casco.getCalculation().getPremiumCurrency(), allOf(not(nullValue()), equalTo(FinCurrency.KZT)));
     }
 
 }
