@@ -2,7 +2,8 @@ package tech.lapsa.insurance.calculation;
 
 import static tech.lapsa.insurance.calculation.CascoRates.*;
 
-import com.lapsa.fin.FinCurrency;
+import java.util.Currency;
+
 import com.lapsa.insurance.domain.casco.Casco;
 import com.lapsa.insurance.elements.CascoCarAgeClass;
 import com.lapsa.insurance.elements.CascoDeductibleFullRate;
@@ -13,8 +14,8 @@ public final class CascoCalculation {
     public static void calculateCascoCost(final Casco casco) throws CalculationFailed {
 	double cost = cascoCostAnnual(casco);
 
-	casco.getCalculation().setCalculatedPremiumCost(cost);
-	casco.getCalculation().setPremiumCurrency(FinCurrency.KZT);
+	casco.getCalculation().setAmount(cost);
+	casco.getCalculation().setCurrency(Currency.getInstance("KZT"));
     }
 
     // PRIVATE

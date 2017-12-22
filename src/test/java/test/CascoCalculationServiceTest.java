@@ -4,9 +4,10 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 import static test.TestObjectsCreatorHelper.*;
 
+import java.util.Currency;
+
 import org.junit.Test;
 
-import com.lapsa.fin.FinCurrency;
 import com.lapsa.insurance.domain.casco.Casco;
 import com.lapsa.insurance.elements.CascoCarAgeClass;
 import com.lapsa.insurance.elements.CascoDeductibleFullRate;
@@ -21,8 +22,8 @@ public class CascoCalculationServiceTest {
     public void testCascoCalculationVariant1() throws CalculationFailed {
 	Casco casco = generateCasco();
 	CascoCalculation.calculateCascoCost(casco);
-	assertThat(casco.getCalculation().getPremiumCost(), equalTo(282994d));
-	assertThat(casco.getCalculation().getPremiumCurrency(), allOf(not(nullValue()), equalTo(FinCurrency.KZT)));
+	assertThat(casco.getCalculation().getAmount(), equalTo(282994d));
+	assertThat(casco.getCalculation().getCurrency(), allOf(not(nullValue()), equalTo(Currency.getInstance("KZT"))));
     }
 
     @Test
@@ -31,8 +32,8 @@ public class CascoCalculationServiceTest {
 	casco.setDeductiblePartialRequired(true);
 	casco.setDeductiblePartialRate(CascoDeductiblePartialRate.PERCENT2);
 	CascoCalculation.calculateCascoCost(casco);
-	assertThat(casco.getCalculation().getPremiumCost(), equalTo(177375d));
-	assertThat(casco.getCalculation().getPremiumCurrency(), allOf(not(nullValue()), equalTo(FinCurrency.KZT)));
+	assertThat(casco.getCalculation().getAmount(), equalTo(177375d));
+	assertThat(casco.getCalculation().getCurrency(), allOf(not(nullValue()), equalTo(Currency.getInstance("KZT"))));
     }
 
     @Test
@@ -50,8 +51,8 @@ public class CascoCalculationServiceTest {
 	casco.setCoverNonRoadAccidents(true);
 
 	CascoCalculation.calculateCascoCost(casco);
-	assertThat(casco.getCalculation().getPremiumCost(), equalTo(50000.00d));
-	assertThat(casco.getCalculation().getPremiumCurrency(), allOf(not(nullValue()), equalTo(FinCurrency.KZT)));
+	assertThat(casco.getCalculation().getAmount(), equalTo(50000.00d));
+	assertThat(casco.getCalculation().getCurrency(), allOf(not(nullValue()), equalTo(Currency.getInstance("KZT"))));
     }
 
 }
