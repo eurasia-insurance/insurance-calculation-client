@@ -3,9 +3,9 @@ package tech.lapsa.insurance.calculation;
 import static tech.lapsa.insurance.calculation.Calculations.*;
 import static tech.lapsa.insurance.calculation.PolicyRates.*;
 
+import java.util.Currency;
 import java.util.List;
 
-import com.lapsa.fin.FinCurrency;
 import com.lapsa.insurance.domain.InsurancePeriodData;
 import com.lapsa.insurance.domain.policy.Policy;
 import com.lapsa.insurance.domain.policy.PolicyDriver;
@@ -23,8 +23,8 @@ public final class PolicyCalculation {
     public static void calculatePolicyCost(final Policy policy) throws CalculationFailed {
 	double cost = policyCost(policy.getInsuredDrivers(),
 		policy.getInsuredVehicles(), policy.getPeriod());
-	policy.getCalculation().setCalculatedPremiumCost(roundMoney(cost));
-	policy.getCalculation().setPremiumCurrency(FinCurrency.KZT);
+	policy.getCalculation().setAmount(roundMoney(cost));
+	policy.getCalculation().setCurrency(Currency.getInstance("KZT"));
     }
 
     // PRIVATE
