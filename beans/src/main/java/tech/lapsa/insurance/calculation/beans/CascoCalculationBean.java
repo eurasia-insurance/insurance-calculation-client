@@ -4,14 +4,26 @@ import static tech.lapsa.insurance.calculation.beans.CascoRates.*;
 
 import java.util.Currency;
 
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+
 import com.lapsa.insurance.domain.casco.Casco;
 import com.lapsa.insurance.elements.CascoCarAgeClass;
 import com.lapsa.insurance.elements.CascoDeductibleFullRate;
 import com.lapsa.insurance.elements.CascoDeductiblePartialRate;
 
-public final class CascoCalculation {
+import tech.lapsa.insurance.calculation.CalculationFailed;
+import tech.lapsa.insurance.calculation.CascoCalculation;
+import tech.lapsa.insurance.calculation.CascoCalculation.CascoCalculationLocal;
+import tech.lapsa.insurance.calculation.CascoCalculation.CascoCalculationRemote;
 
-    public static void calculateCascoCost(final Casco casco) throws CalculationFailed {
+@Stateless(name = CascoCalculation.BEAN_NAME)
+public class CascoCalculationBean implements CascoCalculationLocal, CascoCalculationRemote {
+
+    @Override
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+    public void calculateCascoCost(final Casco casco) throws CalculationFailed {
 	double cost = cascoCostAnnual(casco);
 
 	casco.getCalculation().setAmount(cost);
@@ -19,9 +31,6 @@ public final class CascoCalculation {
     }
 
     // PRIVATE
-
-    private CascoCalculation() {
-    }
 
     private static double cascoCostAnnual(final Casco casco) throws CalculationFailed {
 

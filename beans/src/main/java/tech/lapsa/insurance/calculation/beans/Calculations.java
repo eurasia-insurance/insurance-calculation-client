@@ -8,6 +8,8 @@ import com.lapsa.insurance.domain.InsurancePeriodData;
 import com.lapsa.insurance.elements.PolicyTemporaryEntryTimeCategory;
 import com.lapsa.kz.country.KZCity;
 
+import tech.lapsa.insurance.calculation.CalculationFailed;
+
 final class Calculations {
 
     private Calculations() {
