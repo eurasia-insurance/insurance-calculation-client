@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 
+import com.lapsa.insurance.domain.CalculationData;
 import com.lapsa.insurance.domain.casco.Casco;
 import com.lapsa.insurance.elements.CascoCarAgeClass;
 import com.lapsa.insurance.elements.CascoDeductibleFullRate;
@@ -24,13 +25,24 @@ public class CascoCalculationBean implements CascoCalculationLocal, CascoCalcula
     @Override
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public void calculateCascoCost(final Casco casco) throws CalculationFailed {
-	double cost = cascoCostAnnual(casco);
+	_calculate(casco, casco.getCalculation());
+    }
 
-	casco.getCalculation().setAmount(cost);
-	casco.getCalculation().setCurrency(Currency.getInstance("KZT"));
+    @Override
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+    public CalculationData calculateAmount(final Casco casco) throws CalculationFailed {
+	final CalculationData res = new CalculationData();
+	_calculate(casco, res);
+	return res;
     }
 
     // PRIVATE
+
+    private static void _calculate(final Casco casco, final CalculationData calc) throws CalculationFailed {
+	double cost = cascoCostAnnual(casco);
+	calc.setAmount(cost);
+	calc.setCurrency(Currency.getInstance("KZT"));
+    }
 
     private static double cascoCostAnnual(final Casco casco) throws CalculationFailed {
 
