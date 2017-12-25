@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Currency;
 
+import javax.inject.Inject;
+
 import org.junit.Test;
 
 import com.lapsa.insurance.domain.InsurancePeriodData;
@@ -21,14 +23,17 @@ import com.lapsa.insurance.elements.VehicleAgeClass;
 import com.lapsa.insurance.elements.VehicleClass;
 
 import tech.lapsa.insurance.calculation.CalculationFailed;
-import tech.lapsa.insurance.calculation.PolicyCalculation;
+import tech.lapsa.insurance.calculation.PolicyCalculation.PolicyCalculationLocal;
 
-public class PolicyCalculationServiceTest {
+public class PolicyCalculationServiceTest extends ArquillianBaseTestCase {
+
+    @Inject
+    private PolicyCalculationLocal calc;
 
     @Test
     public void testPolicyCalculationVariant1() throws CalculationFailed {
 	Policy policy = generatePolicy();
-	PolicyCalculation.calculatePolicyCost(policy);
+	calc.calculatePolicyCost(policy);
 	assertThat(policy.getCalculation().getAmount(), equalTo(30804d));
     }
 
@@ -39,7 +44,7 @@ public class PolicyCalculationServiceTest {
 	period.setFrom(LocalDate.of(2016, 10, 26));
 	period.setTo(period.getFrom().plusDays(365));
 	policy.setPeriod(period);
-	PolicyCalculation.calculatePolicyCost(policy);
+	calc.calculatePolicyCost(policy);
 	assertThat(policy.getCalculation().getAmount(), equalTo(30804d));
 	assertThat(policy.getCalculation().getCurrency(),
 		allOf(not(nullValue()), equalTo(Currency.getInstance("KZT"))));
@@ -52,7 +57,7 @@ public class PolicyCalculationServiceTest {
 	period.setFrom(LocalDate.of(2016, 10, 26));
 	period.setTo(period.getFrom().plusMonths(1));
 	policy.setPeriod(period);
-	PolicyCalculation.calculatePolicyCost(policy);
+	calc.calculatePolicyCost(policy);
 	assertThat(policy.getCalculation().getAmount(), equalTo(2693d));
 	assertThat(policy.getCalculation().getCurrency(),
 		allOf(not(nullValue()), equalTo(Currency.getInstance("KZT"))));
@@ -65,7 +70,7 @@ public class PolicyCalculationServiceTest {
 	period.setFrom(LocalDate.of(2016, 10, 26));
 	period.setTo(period.getFrom().plus(1, ChronoUnit.YEARS));
 	policy.setPeriod(period);
-	PolicyCalculation.calculatePolicyCost(policy);
+	calc.calculatePolicyCost(policy);
 	assertThat(policy.getCalculation().getAmount(), equalTo(30804d));
 	assertThat(policy.getCalculation().getCurrency(),
 		allOf(not(nullValue()), equalTo(Currency.getInstance("KZT"))));
@@ -87,7 +92,7 @@ public class PolicyCalculationServiceTest {
 	veh.setVehicleAgeClass(VehicleAgeClass.OVER7);
 	veh.setVehicleClass(VehicleClass.CAR);
 
-	PolicyCalculation.calculatePolicyCost(policy);
+	calc.calculatePolicyCost(policy);
 	assertThat(policy.getCalculation().getAmount(), equalTo(43609d));
 	assertThat(policy.getCalculation().getCurrency(),
 		allOf(not(nullValue()), equalTo(Currency.getInstance("KZT"))));

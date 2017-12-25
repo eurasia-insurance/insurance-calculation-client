@@ -6,6 +6,8 @@ import static test.TestObjectsCreatorHelper.*;
 
 import java.util.Currency;
 
+import javax.inject.Inject;
+
 import org.junit.Test;
 
 import com.lapsa.insurance.domain.casco.Casco;
@@ -14,14 +16,17 @@ import com.lapsa.insurance.elements.CascoDeductibleFullRate;
 import com.lapsa.insurance.elements.CascoDeductiblePartialRate;
 
 import tech.lapsa.insurance.calculation.CalculationFailed;
-import tech.lapsa.insurance.calculation.CascoCalculation;
+import tech.lapsa.insurance.calculation.CascoCalculation.CascoCalculationLocal;
 
-public class CascoCalculationServiceTest {
+public class CascoCalculationServiceTest extends ArquillianBaseTestCase {
+
+    @Inject
+    private CascoCalculationLocal calc;
 
     @Test
     public void testCascoCalculationVariant1() throws CalculationFailed {
 	Casco casco = generateCasco();
-	CascoCalculation.calculateCascoCost(casco);
+	calc.calculateCascoCost(casco);
 	assertThat(casco.getCalculation().getAmount(), equalTo(282994d));
 	assertThat(casco.getCalculation().getCurrency(), allOf(not(nullValue()), equalTo(Currency.getInstance("KZT"))));
     }
@@ -31,7 +36,7 @@ public class CascoCalculationServiceTest {
 	Casco casco = generateCasco();
 	casco.setDeductiblePartialRequired(true);
 	casco.setDeductiblePartialRate(CascoDeductiblePartialRate.PERCENT2);
-	CascoCalculation.calculateCascoCost(casco);
+	calc.calculateCascoCost(casco);
 	assertThat(casco.getCalculation().getAmount(), equalTo(177375d));
 	assertThat(casco.getCalculation().getCurrency(), allOf(not(nullValue()), equalTo(Currency.getInstance("KZT"))));
     }
@@ -50,7 +55,7 @@ public class CascoCalculationServiceTest {
 	casco.setCoverRoadAccidents(false);
 	casco.setCoverNonRoadAccidents(true);
 
-	CascoCalculation.calculateCascoCost(casco);
+	calc.calculateCascoCost(casco);
 	assertThat(casco.getCalculation().getAmount(), equalTo(50000.00d));
 	assertThat(casco.getCalculation().getCurrency(), allOf(not(nullValue()), equalTo(Currency.getInstance("KZT"))));
     }

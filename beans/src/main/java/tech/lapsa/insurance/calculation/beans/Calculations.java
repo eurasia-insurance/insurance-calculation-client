@@ -1,4 +1,4 @@
-package tech.lapsa.insurance.calculation;
+package tech.lapsa.insurance.calculation.beans;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -7,6 +7,8 @@ import java.util.Map;
 import com.lapsa.insurance.domain.InsurancePeriodData;
 import com.lapsa.insurance.elements.PolicyTemporaryEntryTimeCategory;
 import com.lapsa.kz.country.KZCity;
+
+import tech.lapsa.insurance.calculation.CalculationFailed;
 
 final class Calculations {
 
