@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 
+import com.lapsa.insurance.domain.CalculationData;
 import com.lapsa.insurance.domain.InsurancePeriodData;
 import com.lapsa.insurance.domain.policy.Policy;
 import com.lapsa.insurance.domain.policy.PolicyDriver;
@@ -33,13 +34,25 @@ public class PolicyCalculationBean implements PolicyCalculationLocal, PolicyCalc
     @Override
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public void calculatePolicyCost(final Policy policy) throws CalculationFailed {
-	double cost = policyCost(policy.getInsuredDrivers(),
-		policy.getInsuredVehicles(), policy.getPeriod());
-	policy.getCalculation().setAmount(roundMoney(cost));
-	policy.getCalculation().setCurrency(Currency.getInstance("KZT"));
+	_calculate(policy, policy.getCalculation());
+    }
+
+    @Override
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+    public CalculationData calculateAmount(final Policy policy) throws CalculationFailed {
+	final CalculationData res = new CalculationData();
+	_calculate(policy, res);
+	return res;
     }
 
     // PRIVATE
+
+    private static void _calculate(final Policy policy, final CalculationData calc) throws CalculationFailed {
+	double cost = policyCost(policy.getInsuredDrivers(),
+		policy.getInsuredVehicles(), policy.getPeriod());
+	calc.setAmount(cost);
+	calc.setCurrency(Currency.getInstance("KZT"));
+    }
 
     private static double policyCost(final List<PolicyDriver> drivers, final List<PolicyVehicle> vehicles,
 	    final InsurancePeriodData period) throws CalculationFailed {
