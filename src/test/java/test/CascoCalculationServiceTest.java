@@ -13,8 +13,8 @@ import com.lapsa.insurance.elements.CascoCarAgeClass;
 import com.lapsa.insurance.elements.CascoDeductibleFullRate;
 import com.lapsa.insurance.elements.CascoDeductiblePartialRate;
 
-import tech.lapsa.insurance.calculation.CalculationFailed;
-import tech.lapsa.insurance.calculation.CascoCalculation;
+import tech.lapsa.insurance.calculation.beans.CalculationFailed;
+import tech.lapsa.insurance.calculation.beans.CascoCalculation;
 
 public class CascoCalculationServiceTest {
 

@@ -20,8 +20,8 @@ import com.lapsa.insurance.elements.InsuredExpirienceClass;
 import com.lapsa.insurance.elements.VehicleAgeClass;
 import com.lapsa.insurance.elements.VehicleClass;
 
-import tech.lapsa.insurance.calculation.CalculationFailed;
-import tech.lapsa.insurance.calculation.PolicyCalculation;
+import tech.lapsa.insurance.calculation.beans.CalculationFailed;
+import tech.lapsa.insurance.calculation.beans.PolicyCalculation;
 
 public class PolicyCalculationServiceTest {
 

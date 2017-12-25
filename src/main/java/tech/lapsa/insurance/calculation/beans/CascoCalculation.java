@@ -1,6 +1,6 @@
-package tech.lapsa.insurance.calculation;
+package tech.lapsa.insurance.calculation.beans;
 
-import static tech.lapsa.insurance.calculation.CascoRates.*;
+import static tech.lapsa.insurance.calculation.beans.CascoRates.*;
 
 import java.util.Currency;
 

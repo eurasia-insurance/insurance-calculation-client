@@ -1,7 +1,7 @@
-package tech.lapsa.insurance.calculation;
+package tech.lapsa.insurance.calculation.beans;
 
-import static tech.lapsa.insurance.calculation.Calculations.*;
-import static tech.lapsa.insurance.calculation.PolicyRates.*;
+import static tech.lapsa.insurance.calculation.beans.Calculations.*;
+import static tech.lapsa.insurance.calculation.beans.PolicyRates.*;
 
 import java.util.Currency;
 import java.util.List;
