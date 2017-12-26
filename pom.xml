@@ -22,12 +22,12 @@
 
 	<properties>
 		<!-- BOMS -->
-		<javax-javaee-bom.version>7.0a-SNAPSHOT</javax-javaee-bom.version>
+		<javax-javaee-bom.version>7.0a</javax-javaee-bom.version>
 		<lapsa-commons.version>1.0</lapsa-commons.version>
-		<payara-bom.version>4.1.2-2-SNAPSHOT</payara-bom.version>
+		<payara-bom.version>4.1.2-2</payara-bom.version>
 		<!-- tech -->
-		<insurance-domain.version>2.4-SNAPSHOT</insurance-domain.version>
-		<lapsa-arquillian-test.version>1.1-SNAPSHOT</lapsa-arquillian-test.version>
+		<insurance-domain.version>2.4</insurance-domain.version>
+		<lapsa-arquillian-test.version>1.1</lapsa-arquillian-test.version>
 	</properties>
 
 	<dependencyManagement>
