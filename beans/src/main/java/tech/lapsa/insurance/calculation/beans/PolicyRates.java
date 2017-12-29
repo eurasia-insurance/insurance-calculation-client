@@ -14,7 +14,7 @@ import com.lapsa.kz.country.KZArea;
 
 public final class PolicyRates {
 
-    public static final double MRP = 2269d;
+    public static final double MRP = 2405d;
     public static final double BASE_RATE = 1.9;
 
     public static final Map<PolicyTemporaryEntryTimeCategory, Double> POLICY_TEMPORARY_ENTRIY_TIME_CATEGORY_RATES = ofEntries(

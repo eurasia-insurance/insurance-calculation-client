@@ -34,7 +34,7 @@ public class PolicyCalculationServiceTest extends ArquillianBaseTestCase {
     public void testPolicyCalculationVariant1() throws CalculationFailed {
 	Policy policy = generatePolicy();
 	calc.calculatePolicyCost(policy);
-	assertThat(policy.getCalculation().getAmount(), equalTo(30804d));
+	assertThat(policy.getCalculation().getAmount(), equalTo(32650d));
     }
 
     @Test
@@ -45,7 +45,7 @@ public class PolicyCalculationServiceTest extends ArquillianBaseTestCase {
 	period.setTo(period.getFrom().plusDays(365));
 	policy.setPeriod(period);
 	calc.calculatePolicyCost(policy);
-	assertThat(policy.getCalculation().getAmount(), equalTo(30804d));
+	assertThat(policy.getCalculation().getAmount(), equalTo(32650d));
 	assertThat(policy.getCalculation().getCurrency(),
 		allOf(not(nullValue()), equalTo(Currency.getInstance("KZT"))));
     }
@@ -58,7 +58,7 @@ public class PolicyCalculationServiceTest extends ArquillianBaseTestCase {
 	period.setTo(period.getFrom().plusMonths(1));
 	policy.setPeriod(period);
 	calc.calculatePolicyCost(policy);
-	assertThat(policy.getCalculation().getAmount(), equalTo(2693d));
+	assertThat(policy.getCalculation().getAmount(), equalTo(2855d));
 	assertThat(policy.getCalculation().getCurrency(),
 		allOf(not(nullValue()), equalTo(Currency.getInstance("KZT"))));
     }
@@ -71,7 +71,7 @@ public class PolicyCalculationServiceTest extends ArquillianBaseTestCase {
 	period.setTo(period.getFrom().plus(1, ChronoUnit.YEARS));
 	policy.setPeriod(period);
 	calc.calculatePolicyCost(policy);
-	assertThat(policy.getCalculation().getAmount(), equalTo(30804d));
+	assertThat(policy.getCalculation().getAmount(), equalTo(32650d));
 	assertThat(policy.getCalculation().getCurrency(),
 		allOf(not(nullValue()), equalTo(Currency.getInstance("KZT"))));
     }
@@ -93,7 +93,7 @@ public class PolicyCalculationServiceTest extends ArquillianBaseTestCase {
 	veh.setVehicleClass(VehicleClass.CAR);
 
 	calc.calculatePolicyCost(policy);
-	assertThat(policy.getCalculation().getAmount(), equalTo(43609d));
+	assertThat(policy.getCalculation().getAmount(), equalTo(46223d));
 	assertThat(policy.getCalculation().getCurrency(),
 		allOf(not(nullValue()), equalTo(Currency.getInstance("KZT"))));
     }
