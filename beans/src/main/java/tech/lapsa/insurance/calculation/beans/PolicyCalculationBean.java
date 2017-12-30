@@ -113,8 +113,7 @@ public class PolicyCalculationBean implements PolicyCalculationLocal, PolicyCalc
 		    .map(InsurancePeriodData::getFrom) //
 		    .orElseGet(LocalDate::now);
 	    cost = getMRPOn(date)
-		    .orElseThrow(MyExceptions.supplier(EJBException::new, "MRP settings is not available on %1$s",
-			    period.getFrom()));
+		    .orElseThrow(MyExceptions.supplier(EJBException::new, "MRP settings is not available on %1$s", date));
 	}
 
 	{

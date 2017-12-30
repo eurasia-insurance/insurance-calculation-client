@@ -6,7 +6,7 @@
 		factory-class="org.glassfish.resources.custom.factory.PropertiesFactory" res-type="java.util.Properties" jndi-name="insurance/resource/calculation/MRP">
 <!-- 		<property name="2018-01-01" value="2405" /> -->
 <!-- 		<property name="2017-01-01" value="2269" /> -->
-		<property name="2017-01-01" value="2405" />
+		<property name="2016-01-01" value="2405" />
 	</custom-resource>
 
 </resources>
