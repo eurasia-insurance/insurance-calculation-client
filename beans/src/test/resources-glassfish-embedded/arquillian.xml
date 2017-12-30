@@ -5,5 +5,9 @@
 	<engine>
 		<property name="deploymentExportPath">target/deployments</property>
 	</engine>
-	<container qualifier="glassfish-embedded" default="true" />
+	<container qualifier="glassfish-embedded" default="true">
+		<configuration>
+			<property name="resourcesXml">target/test-classes/glassfish-resources.xml</property>
+		</configuration>
+	</container>
 </arquillian>
