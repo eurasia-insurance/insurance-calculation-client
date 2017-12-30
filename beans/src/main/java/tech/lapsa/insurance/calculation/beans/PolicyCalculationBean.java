@@ -3,9 +3,18 @@ package tech.lapsa.insurance.calculation.beans;
 import static tech.lapsa.insurance.calculation.beans.Calculations.*;
 import static tech.lapsa.insurance.calculation.beans.PolicyRates.*;
 
+import java.time.LocalDate;
 import java.util.Currency;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.NavigableMap;
+import java.util.OptionalDouble;
+import java.util.Properties;
+import java.util.TreeMap;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -27,9 +36,34 @@ import tech.lapsa.insurance.calculation.CalculationFailed;
 import tech.lapsa.insurance.calculation.PolicyCalculation;
 import tech.lapsa.insurance.calculation.PolicyCalculation.PolicyCalculationLocal;
 import tech.lapsa.insurance.calculation.PolicyCalculation.PolicyCalculationRemote;
+import tech.lapsa.java.commons.function.MyExceptions;
+import tech.lapsa.java.commons.function.MyObjects;
+import tech.lapsa.java.commons.function.MyOptionals;
 
 @Stateless(name = PolicyCalculation.BEAN_NAME)
 public class PolicyCalculationBean implements PolicyCalculationLocal, PolicyCalculationRemote {
+
+    @Resource(lookup = Constants.JNDI_RESOURCE_CONFIGURATION)
+    private Properties configurationProperties;
+
+    private NavigableMap<LocalDate, Double> mrps;
+
+    @PostConstruct
+    public void loadMrps() {
+	mrps = new TreeMap<>();
+	for (final Entry<Object, Object> e : configurationProperties.entrySet()) {
+	    final LocalDate date = LocalDate.parse(e.getKey().toString());
+	    final Double value = Double.valueOf(e.getValue().toString());
+	    mrps.put(date, value);
+	}
+    }
+
+    private OptionalDouble getMRPOn(LocalDate date) {
+	return MyOptionals.of(mrps.floorEntry(MyObjects.requireNonNull(date, "date"))) //
+		.map(Entry::getValue) //
+		.map(OptionalDouble::of) //
+		.orElse(OptionalDouble.empty());
+    }
 
     @Override
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
@@ -47,14 +81,14 @@ public class PolicyCalculationBean implements PolicyCalculationLocal, PolicyCalc
 
     // PRIVATE
 
-    private static void _calculate(final Policy policy, final CalculationData calc) throws CalculationFailed {
+    private void _calculate(final Policy policy, final CalculationData calc) throws CalculationFailed {
 	double cost = policyCost(policy.getInsuredDrivers(),
 		policy.getInsuredVehicles(), policy.getPeriod());
 	calc.setAmount(cost);
 	calc.setCurrency(Currency.getInstance("KZT"));
     }
 
-    private static double policyCost(final List<PolicyDriver> drivers, final List<PolicyVehicle> vehicles,
+    private double policyCost(final List<PolicyDriver> drivers, final List<PolicyVehicle> vehicles,
 	    final InsurancePeriodData period) throws CalculationFailed {
 	double maximumCost = 0d;
 	for (final PolicyDriver driver : drivers)
@@ -66,14 +100,15 @@ public class PolicyCalculationBean implements PolicyCalculationLocal, PolicyCalc
 	return maximumCost;
     }
 
-    private static double policyCostVariant(final PolicyDriver insured, final PolicyVehicle vehicle,
+    private double policyCostVariant(final PolicyDriver insured, final PolicyVehicle vehicle,
 	    final InsurancePeriodData period) throws CalculationFailed {
 
 	double cost = 0d;
 
 	{
 	    // МРП
-	    cost = getBase();
+	    cost = getMRPOn(LocalDate.now())
+		    .orElseThrow(MyExceptions.supplier(EJBException::new, "MRP settings is invalid"));
 	}
 
 	{
@@ -181,10 +216,6 @@ public class PolicyCalculationBean implements PolicyCalculationLocal, PolicyCalc
 	cost = roundMoney(cost);
 
 	return cost;
-    }
-
-    private static double getBase() {
-	return MRP;
     }
 
     private static double getBaseRate() {
