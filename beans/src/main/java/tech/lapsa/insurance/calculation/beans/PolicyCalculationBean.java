@@ -58,13 +58,6 @@ public class PolicyCalculationBean implements PolicyCalculationLocal, PolicyCalc
 	}
     }
 
-    private OptionalDouble getMRPOn(LocalDate date) {
-	return MyOptionals.of(mrps.floorEntry(MyObjects.requireNonNull(date, "date"))) //
-		.map(Entry::getValue) //
-		.map(OptionalDouble::of) //
-		.orElse(OptionalDouble.empty());
-    }
-
     @Override
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public void calculatePolicyCost(final Policy policy) throws CalculationFailed {
@@ -100,6 +93,15 @@ public class PolicyCalculationBean implements PolicyCalculationLocal, PolicyCalc
 	return maximumCost;
     }
 
+    private OptionalDouble getMRPOn(final LocalDate date) {
+	MyObjects.requireNonNull(date, "date");
+	return MyOptionals.of(mrps) //
+		.map(map -> map.floorEntry(date))
+		.map(Entry::getValue) //
+		.map(OptionalDouble::of) //
+		.orElseGet(OptionalDouble::empty);
+    }
+
     private double policyCostVariant(final PolicyDriver insured, final PolicyVehicle vehicle,
 	    final InsurancePeriodData period) throws CalculationFailed {
 
@@ -107,8 +109,12 @@ public class PolicyCalculationBean implements PolicyCalculationLocal, PolicyCalc
 
 	{
 	    // МРП
-	    cost = getMRPOn(LocalDate.now())
-		    .orElseThrow(MyExceptions.supplier(EJBException::new, "MRP settings is invalid"));
+	    final LocalDate date = MyOptionals.of(period) //
+		    .map(InsurancePeriodData::getFrom) //
+		    .orElseGet(LocalDate::now);
+	    cost = getMRPOn(date)
+		    .orElseThrow(MyExceptions.supplier(EJBException::new, "MRP settings is not available on %1$s",
+			    period.getFrom()));
 	}
 
 	{
