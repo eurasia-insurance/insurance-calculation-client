@@ -9,7 +9,7 @@
 
 	<groupId>tech.lapsa.insurance</groupId>
 	<artifactId>insurance-calculation-client</artifactId>
-	<version>20190103</version>
+	<version>CURRENT-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Insurance Lib : Calculation utility : EJB-client</name>
@@ -87,7 +87,7 @@
 	<scm>
 		<connection>scm:git:https://github.com/eurasia-insurance/insurance-calculation-client.git</connection>
 		<developerConnection>scm:git:https://github.com/eurasia-insurance/insurance-calculation-client.git</developerConnection>
-		<tag>v20190103</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 </project>
